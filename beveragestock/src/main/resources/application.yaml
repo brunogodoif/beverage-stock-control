@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: beveragestockcontrol-app
+  datasource:
+    url: jdbc:mysql://localhost:3306/beverage_stock_control
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+springdoc:
+  api-docs:
+    path: "/api-docs"
+  swagger-ui:
+    path: "/swagger-ui-custom.html"
+    enabled: true
+    operationsSorter: alpha
+    tagsSorter: alpha
+  writer-with-order-by-keys: false
