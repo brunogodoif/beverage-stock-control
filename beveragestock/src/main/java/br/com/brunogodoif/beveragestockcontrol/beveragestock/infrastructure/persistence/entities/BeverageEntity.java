@@ -23,7 +23,7 @@ public class BeverageEntity {
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Set to LAZY to improve performance
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "beverage_type_id", nullable = false)
     private BeverageTypeEntity beverageType;
 
@@ -42,12 +42,12 @@ public class BeverageEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BeverageEntity that = (BeverageEntity) o;
-        return Objects.equals(id, that.id); // Usar apenas o ID para verificar igualdade
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id); // Usar apenas o ID para calcular o hash
+        return Objects.hash(id);
     }
 
 }

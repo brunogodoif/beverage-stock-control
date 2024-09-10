@@ -34,7 +34,6 @@ public class SectionEntity {
     private Set<BeverageEntity> beverages = new HashSet<>();
 
     @OneToMany(mappedBy = "section", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    // Added cascade and orphanRemoval
     private Set<HistoryEntity> histories = new HashSet<>();
 
     @Override
@@ -42,11 +41,11 @@ public class SectionEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SectionEntity that = (SectionEntity) o;
-        return Objects.equals(id, that.id); // Usar apenas o ID para verificar igualdade
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id); // Usar apenas o ID para calcular o hash
+        return Objects.hash(id);
     }
 }

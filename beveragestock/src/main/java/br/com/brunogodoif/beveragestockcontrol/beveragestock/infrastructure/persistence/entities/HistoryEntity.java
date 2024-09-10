@@ -33,11 +33,11 @@ public class HistoryEntity {
     @Column(name = "responsible", nullable = false, length = 100)
     private String responsible;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Set to LAZY to improve performance
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "section_id", nullable = false)
     private SectionEntity section;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Set to LAZY to improve performance
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "beverage_id", nullable = false)
     private BeverageEntity beverage;
 
@@ -46,11 +46,11 @@ public class HistoryEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HistoryEntity that = (HistoryEntity) o;
-        return Objects.equals(id, that.id); // Usar apenas o ID para verificar igualdade
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id); // Usar apenas o ID para calcular o hash
+        return Objects.hash(id);
     }
 }
