@@ -1,0 +1,20 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: beveragestockcontrol-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: app-beveragestock
+          uri: http://localhost:8081
+          predicates:
+            - Path=/beveragestock/**
+          filters:
+            - StripPrefix=1
+            - PreserveHostHeader
+logging:
+  level:
+    org:
+      springframework:
+        cloud: INFO

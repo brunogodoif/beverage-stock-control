@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: beverage_stock_control
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - beveragestock-network
+
+  beveragestock:
+    build:
+      context: ../beveragestock
+      dockerfile: .docker/Dockerfile
+      args:
+        - APP_NAME=beveragestock
+        - APP_VERSION=1.0.0
+    container_name: beveragestock
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/beverage_stock_control
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - beveragestock-network
+
+networks:
+  beveragestock-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
