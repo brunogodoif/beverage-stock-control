@@ -1,20 +1,33 @@
 server:
   port: 8080
+
 spring:
+
   application:
     name: beveragestockcontrol-app
+
   datasource:
     url: jdbc:mysql://localhost:3306/beverage_stock_control
     username: root
     password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+
+  flyway:
+    enabled: true
+    url: jdbc:mysql://localhost:3306/beverage_stock_control
+    user: root
+    password: root
+    baseline-on-migrate: true
+    database-type: mysql
+    locations: classpath:db/migration
+
 springdoc:
   api-docs:
     path: "/api-docs"
